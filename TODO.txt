@@ -1,0 +1,2 @@
+Dodać do readme instrukcję gry
+Dodać mieszanie kart
