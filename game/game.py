@@ -1,8 +1,18 @@
 from random import randint
 
-KARTY = ["Dżaga", "Gandzia", "Zadra",
-         "Ciri", "Bazia", "Florka",
-         "Forest", "Tola", "Coco"]
+class Karta:
+    """Jeden z dziewięciu elementów."""
+
+    def __init__(self, imie):
+        self.imie = imie
+
+    def __str__(self):
+        return self.imie
+
+
+KARTY = [Karta("Dżaga"), Karta("Gandzia"), Karta("Zadra"),
+         Karta("Ciri"), Karta("Bazia"), Karta("Florka"),
+         Karta("Forest"), Karta("Tola"), Karta("Coco")]
 
 
 def wyswietl_karty(karty):
@@ -31,5 +41,8 @@ def gra():
     """Funkcja przeprowadzająca grę."""
     karty = mieszaj_karty(KARTY)
     wyswietl_karty(karty)
+
+
+
 
 gra()
