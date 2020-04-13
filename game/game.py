@@ -1,6 +1,6 @@
+from random import randint
 
-
-karty = ["Dżaga", "Gandzia", "Zadra",
+KARTY = ["Dżaga", "Gandzia", "Zadra",
          "Ciri", "Bazia", "Florka",
          "Forest", "Tola", "Coco"]
 
@@ -13,6 +13,23 @@ def wyswietl_karty(karty):
         print("\n")
 
 
+def czysc_ekran():
+    # czyszczenie ekranu
+    pass
 
 
-wyswietl_karty(karty)
+def mieszaj_karty(karty):
+    # mieszanie
+    for poz in range(len(karty)):
+        rand_poz = randint(0, len(karty)-1)
+        karty[rand_poz], karty[poz] = karty[poz], karty[rand_poz]
+    return karty
+
+
+
+def gra():
+    """Funkcja przeprowadzająca grę."""
+    karty = mieszaj_karty(KARTY)
+    wyswietl_karty(karty)
+
+gra()
