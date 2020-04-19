@@ -22,14 +22,19 @@ CARD_TEMPLATE = """"
 
 class Karta:
     """Jeden z dziewięciu elementów."""
-    czy_odkryta = False
+    czy_odkryta = True
+    numer = 0
 
     def __init__(self, imie):
         self.imie = imie
 
     def __str__(self):
-        first_letter = self.imie[0]
-        card = CARD_TEMPLATE.format(first_letter, self.imie, first_letter)
+        if self.czy_odkryta:
+            first_letter = self.imie[0]
+            card = CARD_TEMPLATE.format(first_letter, self.imie, first_letter)
+        else:
+            card = CARD_TEMPLATE.format(self.numer, "???", self.numer)
+
         return card
 
 
@@ -58,6 +63,9 @@ def mieszaj_karty(karty):
     for poz in range(len(karty)):
         rand_poz = randint(0, len(karty)-1)
         karty[rand_poz], karty[poz] = karty[poz], karty[rand_poz]
+    for numer_karty, karta in enumerate(karty):
+        karta.numer = numer_karty + 1  # aby odpowiednio się wyświetlało dla gracza - bardziej czytelne
+
     return karty
 
 
@@ -72,20 +80,35 @@ def clear():
         _ = system('clear')
 
 
+def zgaduj():
+    """
+    zadaj pytanie                                   #print - trzeba wylosować nieodkrytą kartę
+    dopóki nie zgadnięta karta:                     #while - zapisywać strzał gracza
+        jeśli odp dobra to odkryj karte             #if -
+        jeśli odp zła wróć do początku              #else - print "spróbuj jeszcze raz" --> continue
+    :return: 
+    """
+    pass
+
+
+
 def gra():
     """Funkcja przeprowadzająca grę."""
     karty = mieszaj_karty(KARTY)
     wyswietl_karty(karty)
 
-    # sleep for 2 seconds after printing output
     sleep(5)
 
-    # now call function we defined above
     clear()
 
-    sleep(5)
+    for karta in karty:
+        karta.czy_odkryta = False
 
     wyswietl_karty(karty)
+
+    sleep(5)
+
+
 
 
 gra()
