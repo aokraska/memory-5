@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, choice
 from operator import attrgetter
 
 # import only system from os
@@ -80,21 +80,31 @@ def clear():
         _ = system('clear')
 
 
-def zgaduj():
+def pytaj(wszystkie, nieodgadniete):
     """
-    zadaj pytanie                                   #print - trzeba wylosować nieodkrytą kartę
-    dopóki nie zgadnięta karta:                     #while - zapisywać strzał gracza
-        jeśli odp dobra to odkryj karte             #if -
-        jeśli odp zła wróć do początku              #else - print "spróbuj jeszcze raz" --> continue
-    :return: 
-    """
-    pass
+       zadaj pytanie                                   #print - trzeba wylosować nieodkrytą kartę
+       dopóki nie zgadnięta karta:                     #while - zapisywać strzał gracza
+           jeśli odp dobra to odkryj karte             #if -
+           jeśli odp zła wróć do początku              #else - print "spróbuj jeszcze raz" --> continue
+       :return:
+       """
+    wylosowana = choice(nieodgadniete)
 
+    print(f"Gdzie leży {wylosowana.imie}")
+
+    odpowiedz_gracza = None
+
+    while wylosowana.numer != odpowiedz_gracza:
+        odpowiedz_gracza = int(input("... to proste po prostu wybierz karte"))
+    nieodgadniete.remove(wylosowana)
+    wylosowana.czy_odkryta = True
+    # TODO: usuwanie wylosowanej karty ze zbioru nieodgadniete
 
 
 def gra():
     """Funkcja przeprowadzająca grę."""
     karty = mieszaj_karty(KARTY)
+    nieodgadniete = karty.copy()
     wyswietl_karty(karty)
 
     sleep(5)
@@ -103,10 +113,11 @@ def gra():
 
     for karta in karty:
         karta.czy_odkryta = False
-
+    while len(nieodgadniete) > 0:
+        pytaj(karty, nieodgadniete)
+    print("GRATULACJA!!!!!")
     wyswietl_karty(karty)
 
-    sleep(5)
 
 
 

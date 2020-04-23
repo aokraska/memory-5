@@ -36,4 +36,4 @@ Forest---?8---?9
 ```
 
 
-- gdy gracz nie zgadnie podajemy co leży pod kartą którą wskaże, ale ta informacja znika po 3 sekundach
+- gdy gracz nie zgadnie, pytanie wyświetlane jest ponownie, aż do skutku
