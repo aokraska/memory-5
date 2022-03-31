@@ -1,7 +1,7 @@
 # memory-5
 Text based memory game
 
-##Instrukcja
+## Instrukcja
 
 program wyswielta w konsoli "karty"
 ```
@@ -27,7 +27,7 @@ $ > 7
 ```
 i tak do końca
 
-###Ulepszenia:
+### Ulepszenia:
 - za każdym razem przy pytanie rysować plansze z odgadnietymi juz kartami
 ```
 Dżaga ---?2---?3
